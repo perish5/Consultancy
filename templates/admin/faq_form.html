@@ -1,0 +1,58 @@
+{% extends "partials/layout.html" %}
+
+{% block header %}
+  {% include "partials/header.html" %}
+{% endblock header %}
+
+{% block slider %}
+<style>
+  .btn-green {
+        background-color: #28a745;
+        color: #fff;
+        text-decoration: none;
+        border: 1px solid #28a745;
+        font-weight: 500;
+        transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+    }
+  .btn-green:hover {
+        background-color: #0d6efd;
+        color: #fff;
+        border-color: #0d6efd;
+    }
+</style>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="form-container w-100">
+    <h2 class="form-title">{% if faq %}Update FAQ{% else %}Add FAQ{% endif %}</h2>
+    <form action="{% if faq %}{% url 'update_faq' faq.id %}{% else %}{% url 'add_faq' %}{% endif %}" method="post">
+      {% csrf_token %}
+
+      <div class="form-group mt-3">
+        <label class="form-label">Question</label>
+        <input type="text" class="form-control" name="question" value="{{ faq.question }}" required>
+      </div>
+
+      <div class="form-group mt-3">
+        <label class="form-label">Answer</label>
+        <textarea class="form-control" name="answer" rows="5" required>{{ faq.answer }}</textarea>
+      </div>
+
+      <div class="d-flex gap-2 mt-4">
+        <button type="submit" class="btn-green">{% if faq %}Update{% else %}Add{% endif %}</button>
+
+        {% if faq %}
+        <a href="{% url 'delete_faq' faq.id %}" class="btn btn-danger w-100">Delete</a>
+        {% endif %}
+      </div>
+
+      {% if error_message %}
+      <div class="alert alert-danger mt-3" role="alert">
+        {{ error_message }}
+      </div>
+      {% endif %}
+    </form>
+  </div>
+</div>
+{% endblock slider %}

@@ -1,0 +1,83 @@
+{% extends "partials/layout.html" %}
+
+
+    {% block header %}
+    {% include "partials/header.html" %}
+    {% endblock header %}
+
+{% block slider %}
+    <style>
+        .service-image-thumb {
+            width: 420px;
+            height: 280px;
+            overflow: hidden;
+            border-radius: 6px;
+            background-color: #f8f9fa; /* optional background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+        }
+
+        .service-image-thumb img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .service-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .content-box {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .back-link {
+            margin-top: 20px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container my-5">
+    <div class="service-header">
+        <h1 class="fw-bold">{{ service.title }}</h1>
+    </div>
+
+    <div class="service-image-thumb">
+        {% if service.cover_image %}
+            <img src="{{ service.cover_image.url }}" alt="{{ service.title|default:'Service Image' }}">
+     
+        {% endif %}
+    </div>
+
+<div class="service-description" style="
+    font-size: 16px;
+    line-height: 1.7;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-align: justify;
+">
+    {{ service.content|linebreaks }}
+</div>
+
+
+
+
+
+   
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+{% endblock slider %}

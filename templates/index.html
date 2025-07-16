@@ -1,0 +1,65 @@
+{% extends "partials/layout.html" %}
+
+
+    {% block header %}
+    {% include "partials/header.html" %}
+    {% endblock header %}
+
+    <!-- Slider Area Start -->
+    {% block slider %}
+     {% include "partials/slider.html" %}
+    {% endblock slider %}
+    <!-- Slider Area End -->
+
+    <!-- Services Area Start -->
+    {% block services %}
+     {% include "partials/services.html" %}
+    {% endblock services %}
+
+    {% block aboutus %}
+     {% include "partials/about.html" %}
+    {% endblock aboutus %} 
+
+    <!-- Courses Area Start -->
+    {% block courses %}
+     {% include "partials/courses.html" %}
+    {% endblock courses %}
+    <!-- Courses Area End -->
+
+    <!-- Testimonial Start -->
+ {% block testimonials %}
+     {% include "partials/testimonials.html" %}
+    {% endblock testimonials %} 
+    <!-- Testimonial End -->
+
+
+    <!-- Team Members Start -->
+    {% comment %} {% block team_members %}
+     {% include "partials/team_members.html" %}
+    {% endblock team_members %} {% endcomment %}
+    <!-- Team Members End -->
+
+    <!-- Gallery / Brand Area Start -->
+    {% block gallery %}
+     {% include "partials/gallery.html" %}
+    {% endblock gallery %}
+    <!-- Gallery / Brand Area End -->
+
+    <!-- Events / Blog Area Start -->
+    {% block events %}
+     {% include "partials/events.html" %}
+    {% endblock events %}
+    <!-- Events / Blog Area End -->
+
+
+
+
+    {% block footer %}
+     {% include "partials/footer.html" %}
+    {% endblock footer %}
+
+
+    {% block script %}
+     {% include "partials/script.html" %}
+    {% endblock script %}
+

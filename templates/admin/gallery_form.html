@@ -1,0 +1,57 @@
+{% extends "partials/layout.html" %}
+
+
+    {% block header %}
+    {% include "partials/header.html" %}
+    {% endblock header %}
+
+{% block slider %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  .btn-green {
+        background-color: #28a745;
+        color: #fff;
+        text-decoration: none;
+        border: 1px solid #28a745;
+        font-weight: 500;
+        transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+    }
+  .btn-green:hover {
+        background-color: #0d6efd;
+        color: #fff;
+        border-color: #0d6efd;
+    }
+  </style>
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="form-container w-100" style="max-width: 600px;">
+    <h2 class="form-title">{% if gallery %}Update Image{% else %}Add Image{% endif %}</h2>
+
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="mb-3">
+        <label class="form-label">Image Name</label>
+        <input type="text" class="form-control" name="image_name" value="{{ gallery.image_name|default:'' }}" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Upload Image</label>
+        <input type="file" class="form-control" name="image">
+        {% if gallery.image %}
+          <img src="{{ gallery.image.url }}" alt="Current Image" class="mt-2" style="max-width: 150px;">
+        {% endif %}
+      </div>
+
+      <button type="submit" class="btn-green w-100">
+        {% if gallery %}Update{% else %}Add{% endif %}
+      </button>
+
+      {% if error_message %}
+      <div class="alert alert-danger mt-3" role="alert">
+        {{ error_message }}
+      </div>
+      {% endif %}
+    </form>
+  </div>
+</div>
+{% endblock slider %}

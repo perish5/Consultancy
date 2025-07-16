@@ -1,0 +1,153 @@
+{% load static %}
+<style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        main {
+            flex: 1 0 auto;
+        }
+        footer {
+            flex-shrink: 0;
+        }
+    </style>
+ <footer>
+<div class="footer-area section-bg">
+        <div class="container">
+            <div class="footer-top footer-padding">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-8">
+                        <div class="single-footer-caption mb-50">
+                            <!-- logo -->
+                            <div class="footer-logo">
+                                 </div>
+                           
+                            <div class="footer-number">
+                                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
+                            <div class="logo text-left">
+                                <img src="{% static 'assets/img/logo/img.jpg' %}" alt="Logo" style="max-height: 90px;">
+                                <div class="footer-tittle">
+                                <div class="footer-pera">
+                                    <p class="info1"></p>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                              <div class="col">
+                                
+                                {% for consultancy in consultancies %}
+                                <li><h4><i class="bi bi-telephone-fill me-2"></i><span>{{ consultancy.phone_number }}</h4></li>
+                                <p><i class="bi bi-geo-alt-fill me-2"></i>{{ consultancy.address }}</p> 
+                                </li>
+                                <p><i class="bi bi-envelope-fill me-2"></i>{{ consultancy.email }}</p>
+                                </li>
+                            {% endfor %}
+                            </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-3 col-sm-5">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Quick Links </h4>
+                                <ul>
+                                    <li><a href="{% url "privacy_policy" %}">Privacy Policy</a></li>
+                                    <li><a href="{% url 'events' %}">News</a></li>
+                                    <li><a href="{% url "faqs" %}">FAQ's</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-3 col-sm-5">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <ul>
+                                    <h4>Our Services</h4>
+                                    {% for service in services|slice:":5" %}
+                                    <li><a href="{% url 'service_detail' service.id %}">{{ service.title }}</a></li>
+                                     {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slideshow (Ratings Carousel) -->
+<div id="demoCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
+    <div class="carousel-inner">
+
+        <!-- Slide 1 -->
+        <div class="carousel-item active text-center p-3 bg-white border rounded shadow-sm">
+            <h6 class="mb-1 text-primary">Excellent Course</h6>
+            <p class="mb-2 text-dark">This course was incredibly helpful and well-structured!</p>
+            <div class="text-warning small">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-item text-center p-3 bg-white border rounded shadow-sm">
+            <h6 class="mb-1 text-primary">Very Good Experience</h6>
+            <p class="mb-2 text-dark">Good coverage of topics and clear explanations.</p>
+            <div class="text-warning small">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star"></i>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-item text-center p-3 bg-white border rounded shadow-sm">
+            <h6 class="mb-1 text-primary">Great Support</h6>
+            <p class="mb-2 text-dark">Responsive support team and practical lessons.</p>
+            <div class="text-warning small">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star"></i>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#demoCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bg-primary rounded-circle p-2" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#demoCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon bg-primary rounded-circle p-2" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="row d-flex justify-content-between align-items-center">
+                    <div class="col-xl-9 col-lg-8">
+                        <div class="footer-copy-right">
+                            
+                    </div>
+                    <div class="col-xl-3 col-lg-4">
+                        <!-- Footer Social -->
+                        <div class="footer-social f-right">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.facebook.com/sai4ull"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fas fa-globe"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </footer>

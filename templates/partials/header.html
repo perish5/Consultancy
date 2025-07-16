@@ -1,0 +1,141 @@
+{% load static %}
+
+<!-- Header Start -->
+<header>
+    <style>
+        .highlight-appointment {
+            color: #fff !important;
+            background-color: #e63946;
+            padding: 6px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .highlight-appointment:hover {
+            background-color: #d62828;
+            text-decoration: none;
+        }
+    </style>
+
+    <div class="header-area">
+        <div class="main-header">
+
+            <!-- Font Awesome CDN -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+            <div class="header-top d-none d-lg-block">
+                <div class="container">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="header-info-left d-flex align-items-center justify-content-between w-100">
+                            <ul class="d-flex mb-0 list-unstyled">
+                                {% comment %} <li class="me-4"><i class="fas fa-map-marker-alt"></i> Samakhusi-26, Kathmandu</li>
+                                <li><i class="fas fa-phone"></i> +977-1-1234567</li>
+                             {% endcomment %}
+                            {% for consultancy in consultancies %}
+                                <li class="me-4">
+                                    <i class="fas fa-map-marker-alt"></i> {{ consultancy.address }}
+                                </li>
+                                <li class="me-4">
+                                    <i class="fas fa-phone"></i> {{ consultancy.phone_number }}
+                                </li>
+                                <li class="me-4">
+                                    <i class="fas fa-envelope"></i> {{ consultancy.email }}
+                                </li>
+                            {% endfor %}
+                            </ul>
+                                <ul class="header-social d-flex list-unstyled mb-0">
+                                <li class="me-3"><a href="https://www.facebook.com/Eurosiaintl"><i class="fab fa-facebook-f"></i></a></li>
+                                <li class="me-3"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li class="me-3"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-bottom header-sticky">
+                <div class="container">
+                    <div class="row align-items-center justify-content-end">
+
+                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
+                            <div class="logo text-left">
+                                <a href="{% url 'home' %}">
+                                    <img src="{% static 'assets/img/logo/img.jpg' %}" alt="Logo" style="max-height: 80px;">
+                                </a>
+                            </div>
+                        </div>
+
+                     <div class="col-xl-10 col-lg-10 d-none d-lg-block">
+    <div class="d-flex justify-content-end align-items-center">
+        <div class="main-menu ml-auto">
+            <nav>
+                <ul id="navigation">
+
+                    <!-- Admin Panel (Superuser Only) -->
+                    {% if request.user.is_authenticated and request.user.is_superuser %}
+                        <li><a href="{% url 'admin_dashboard' %}">Admin Panel</a></li>
+                    {% endif %}
+
+                    <!-- Public Links -->
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'about_us' %}">About Us</a></li>
+
+                    <!-- Services Dropdown -->
+                    <li>
+                        <a href="{% url 'services' %}">Service</a>
+                        <ul class="submenu">
+                            {% for service in services|slice:":4" %}
+                                <li><a href="{% url 'service_detail' service.id %}">{{ service.title }}</a></li>
+                            {% empty %}
+                                <li><a href="#">No services available</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+
+                    <!-- Courses Dropdown -->
+                    <li>
+                        <a href="{% url 'courses' %}">Course And Training</a>
+                        <ul class="submenu">
+                            {% for course in courses|slice:":4" %}
+                                <li><a href="{% url 'course_detail' course.id %}">{{ course.course_name }}</a></li>
+                            {% empty %}
+                                <li><a href="#">No courses available</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+
+                    <!-- Other Static Pages -->
+                    <li><a href="{% url 'events' %}">Event</a></li>
+                    <li><a href="{% url 'create_mocktests' %}">Mock Test</a></li>
+                    <li><a href="{% url 'add_appointment' %}" class="highlight-appointment">Appointment</a></li>
+
+                    <!-- Authentication Links -->
+                    {% if not request.user.is_authenticated %}
+                        <li><a href="{% url 'login' %}">Log In</a></li>
+                    {% endif %}
+
+                    {% if request.user.is_authenticated and request.user.is_superuser %}
+                        <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                    {% endif %}
+
+                    {% if request.user.is_authenticated %}
+                        <li><a href="{% url 'logout' %}">Log Out</a></li>
+                    {% endif %}
+
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</header>
+<!-- Header End -->

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Admin Panel Dashboard</title>
+<style>
+  body {
+    display: flex;
+    margin: 0; font-family: Arial, sans-serif;
+    height: 100vh;
+  }
+  #sidebar {
+    width: 220px;
+    background: #2c3e50;
+    color: white;
+    display: flex;
+    flex-direction: column;
+  }
+  #sidebar button {
+    padding: 15px;
+    border: none;
+    background: none;
+    color: white;
+    text-align: left;
+    cursor: pointer;
+    font-size: 16px;
+    border-left: 4px solid transparent;
+    transition: background-color 0.3s, border-left 0.3s;
+  }
+  #sidebar button:hover,
+  #sidebar button.active {
+    background: #34495e;
+    border-left: 4px solid #e74c3c;
+  }
+  #content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: #ecf0f1;
+  }
+  section {
+    display: none;
+  }
+  section.active {
+    display: block;
+  }
+  h2 {
+    margin-top: 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  table, th, td {
+    border: 1px solid #bbb;
+  }
+  th, td {
+    padding: 8px;
+    text-align: left;
+  }
+  img {
+    max-width: 100px;
+  }
+</style>
+</head>
+<body>
+
+<div id="sidebar">
+<a href="{% url 'home' %}" style="text-decoration: none;">
+  <button>Home</button>
+</a>
+  <button data-target="consultancies">Consultancy Details</button>
+  <button data-target="appointments">Appointment</button>
+  <button data-target="sliders">Slider Images</button>
+  <button  data-target="services">Services</button>
+  <button data-target="courses">Courses</button>
+  <button data-target="testimonials">Testimonials</button>
+  <button data-target="events">Events</button>
+  <button data-target="gallery">Gallery</button>
+  <button data-target="policies">Privacy Policy</button>
+  <button data-target="users">Users</button>
+</div>
+
+<div id="content">
+    <section id="consultancies" class="active">
+    {% include "admin/consultancy_list.html" %}
+  </section>
+
+    <section id="appointments" >
+    {% include "admin/appointment_list.html" %}
+  </section>
+
+  <section id="sliders">
+    {% include "admin/slider_image_list.html" %}
+  </section>
+  
+  <section id="services">
+    {% include "admin/service_list.html" %}
+  </section>
+
+  <section id="courses">
+    {% include "admin/course_list.html" %}
+  </section>
+
+   <section id="testimonials">
+    {% include "admin/testimonial_list.html" %}
+  </section>
+
+  <section id="events">
+    {% include "admin/event_list.html" %}
+  </section>
+
+    <section id="gallery">
+    {% include "admin/gallery_list.html" with images=gallery %}
+  </section>
+
+  <section id="policies">
+    {% include "admin/privacy_policy_list.html" %}
+  </section>
+
+
+  <section id="users">
+    {% include "admin/user_details.html" %}
+  </section>
+</div>
+
+<script>
+  const buttons = document.querySelectorAll('#sidebar button');
+  const sections = document.querySelectorAll('#content section');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      buttons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      const targetId = button.getAttribute('data-target');
+      sections.forEach(section => {
+        if (section.id === targetId) {
+          section.classList.add('active');
+        } else {
+          section.classList.remove('active');
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
