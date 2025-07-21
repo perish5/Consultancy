@@ -48,6 +48,7 @@
         <tr>
           <th>Name</th>
           <th>Description</th>
+          <th>Why To Choose</th>
           <th>Email</th>
           <th>Address</th>
           <th>Phone (Landline)</th>
@@ -60,7 +61,8 @@
         {% for consultancy in consultancies %}
         <tr>
           <td>{{ consultancy.cons_name }}</td>
-          <td>{{ consultancy.content|truncatechars:50 }}</td>
+          <td>{{ consultancy.content|truncatechars:10 }}</td>
+          <td>{{ consultancy.why_to_choose|truncatechars:10 }}</td>
           <td>{{ consultancy.email }}</td>
           <td>{{ consultancy.address }}</td>
           <td>{{ consultancy.phone_number|default:"-" }}</td>

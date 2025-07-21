@@ -40,8 +40,13 @@
       </div>
 
       <div class="form-group mt-3">
-        <label class="form-label">Description</label>
-        <textarea class="form-control" name="content" rows="4" required>{{ consultancy.content|default:'' }}</textarea>
+            <label class="form-label">About Us</label>
+            <textarea class="form-control" name="content" rows="8" style="font-size: 1rem; padding: 12px;" required>{{ consultancy.content|default:'' }}</textarea>
+          </div>
+
+          <div class="form-group mt-3">
+            <label class="form-label">Why To Choose Us</label>
+            <textarea class="form-control" name="why_to_choose" rows="8" style="font-size: 1rem; padding: 12px;" required>{{ consultancy.why_to_choose|default:'' }}</textarea>
       </div>
 
       <div class="form-group mt-3">

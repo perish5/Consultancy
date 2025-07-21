@@ -53,6 +53,7 @@ def consultancy_add(request):
     if request.method == 'POST':
         cons_name = request.POST.get('cons_name')
         content = request.POST.get('content')
+        why_to_choose = request.POST.get('why_to_choose')
         email = request.POST.get('email')
         address = request.POST.get('address')
         phone_number = request.POST.get('phone_number', '')
@@ -65,6 +66,7 @@ def consultancy_add(request):
             consultancy = Consultancy(
                 cons_name=cons_name,
                 content=content,
+                why_to_choose = why_to_choose,
                 email=email,
                 address=address,
                 phone_number=phone_number,
@@ -82,6 +84,7 @@ def consultancy_update(request, consultancy_id):
     if request.method == 'POST':
         cons_name = request.POST.get('cons_name')
         content = request.POST.get('content')
+        why_to_choose=request.POST.get('why_to_choose')
         email = request.POST.get('email')
         address = request.POST.get('address')
         phone_number = request.POST.get('phone_number', '')
@@ -93,6 +96,7 @@ def consultancy_update(request, consultancy_id):
         else:
             consultancy.cons_name = cons_name
             consultancy.content = content
+            consultancy.why_to_choose=why_to_choose
             consultancy.email = email
             consultancy.address = address
             consultancy.phone_number = phone_number

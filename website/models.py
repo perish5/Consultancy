@@ -9,6 +9,7 @@ from django.db import models
 class Consultancy(models.Model):
     cons_name = models.CharField("Consultancy Name", max_length=50)
     content = models.TextField("Description")
+    why_to_choose = models.TextField("Why To Choose")
     cover_image = models.ImageField(upload_to="consultancy", null=True, blank=True)
 
     email = models.EmailField("Email Address", max_length=50)
