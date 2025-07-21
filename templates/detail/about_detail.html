@@ -9,25 +9,23 @@
 
 <style>
     .about-section {
-        max-width: 900px;
+        max-width: 1000px;
         margin: auto;
         padding: 2rem;
         background-color: #ffffff;
         border-radius: 15px;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
-        text-align: center; /* Center headings and content */
     }
 
     .about-image {
         width: 100%;
         height: auto;
         border-radius: 12px;
-        margin: 20px 0;
         object-fit: cover;
     }
 
     .detail-box {
-        margin-top: 30px;
+        padding: 1rem;
     }
 
     .detail-box h4 {
@@ -42,10 +40,7 @@
         font-size: 1rem;
         line-height: 1.7;
         color: #333;
-        text-align: left;
         word-break: break-word;
-        max-width: 85%;
-        margin: 0 auto;
     }
 
     h1.page-title {
@@ -61,17 +56,16 @@
             padding: 1rem;
         }
 
+        .row.flex-md-row {
+            flex-direction: column !important;
+        }
+
         .detail-box h4 {
             font-size: 1.25rem;
         }
 
         h1.page-title {
             font-size: 1.5rem;
-        }
-
-        .detail-box p,
-        .detail-box div {
-            max-width: 100%;
         }
     }
 </style>
@@ -81,18 +75,23 @@
     <div class="about-section">
         <h1 class="page-title">{{ consultancy.cons_name }}</h1>
 
-        {% if consultancy.cover_image %}
-        <img src="{{ consultancy.cover_image.url }}" alt="{{ consultancy.cons_name }}" class="about-image img-fluid mx-auto d-block">
-        {% endif %}
-
-        <div class="detail-box">
-            <h4>About Us</h4>
-            <p>{{ consultancy.content|linebreaks }}</p>
+        <div class="row align-items-center flex-md-row">
+            <div class="col-md-6 detail-box">
+                <h4>About Us</h4>
+                <p>{{ consultancy.content|linebreaks }}</p>
+            </div>
+            <div class="col-md-6">
+                {% if consultancy.cover_image %}
+                <img src="{{ consultancy.cover_image.url }}" alt="{{ consultancy.cons_name }}" class="about-image img-fluid">
+                {% endif %}
+            </div>
         </div>
 
-        <div class="detail-box">
-            <h4>Why Choose Us</h4>
-            <div>{{ consultancy.why_to_choose|linebreaks }}</div>
+        <div class="row mt-4">
+            <div class="col-12 detail-box">
+                <h4>Why Choose Us</h4>
+                <div>{{ consultancy.why_to_choose|linebreaks }}</div>
+            </div>
         </div>
     </div>
     {% endif %}
